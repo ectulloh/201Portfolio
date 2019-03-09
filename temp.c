@@ -66,7 +66,7 @@ dim=1;
 char again[1];
 char profileNames[maxProfiles][10];
 int profileData[maxProfiles][3];
-int col=1, playerNum=0, numCreated=0; p1W=0, p2W=0, gameNum=0;
+int col=1, playerNum=0, numCreated=0, p1W=0, p2W=0, gameNum=0;
 char name1[10], name2[10]="Computer", type[10];
 for(int i=0; i<maxProfiles; i++){
 for(int j=0; j<3; j++){
@@ -131,7 +131,8 @@ PrintBoard(board);
 if(checkForWiner(board)==1){
     printf("%s Wins!\n", name1);
     if(whichProfile(profileNames, numCreated, name1)==-1){
-        profileNames[numCreated]=name1;
+        strncpy( profileNames[numCreated], name1, 10);
+       // profileNames[numCreated]=name1;
         profileData[numCreated][0]++;
         numCreated++;
     }
@@ -140,7 +141,8 @@ if(checkForWiner(board)==1){
     }
     if(playerNum==2){
         if(whichProfile(profileNames, numCreated, name2)==-1){
-            profileNames[numCreated]=name2;
+            //profileNames[numCreated]=name2;
+            strncpy( profileNames[numCreated], name2, 10);
             profileData[numCreated][1]++;
             numCreated++;
         }
@@ -148,13 +150,14 @@ if(checkForWiner(board)==1){
             profileData[whichProfile(profileNames, numCreated, name2)][1]++;
         }
     }
-    printf("%s's record is %d out of %d!\n", name1, profileData[whichProfile(profileNames, numCreated, name1)][0], totalGames(profileNames, profileData, numCreated, name1);
+    printf("%s's record is %d out of %d!\n", name1, profileData[whichProfile(profileNames, numCreated, name1)][0], totalGames(profileNames, profileData, numCreated, name1));
 }
 else if(checkForWiner(board)==2){
 printf("%s Wins!\n", name2);
 if(playerNum==2){
 if(whichProfile(profileNames, numCreated, name2)==-1){
-profileNames[numCreated]=name2;
+strncpy( profileNames[numCreated], name2, 10);
+//profileNames[numCreated]=name2;
 profileData[numCreated][0]++;
 numCreated++;
 }
@@ -163,19 +166,21 @@ profileData[whichProfile(profileNames, numCreated, name2)][0]++;
 }
 }
 if(whichProfile(profileNames, numCreated, name1)==-1){
-profileNames[numCreated]=name1;
+strncpy( profileNames[numCreated], name1, 10);
+//profileNames[numCreated]=name1;
 profileData[numCreated][1]++;
 numCreated++;
 }
 else{
 profileData[whichProfile(profileNames, numCreated, name1)][1]++;
 }
-printf("%s's record is %d out of %d!\n", name2, profileData[whichProfile(profileNames, numCreated, name2)][0], totalGames(profileNames, profileData, numCreated, name2);
+printf("%s's record is %d out of %d!\n", name2, profileData[whichProfile(profileNames, numCreated, name2)][0], totalGames(profileNames, profileData, numCreated, name2));
 }
 else if(checkForWiner(board)==-1){
     printf("No one wins!\n");
     if(whichProfile(profileNames, numCreated, name1)==-1){
-        profileNames[numCreated]=name1;
+        strncpy( profileNames[numCreated], name1, 10);
+       // profileNames[numCreated]=name1;
         profileData[numCreated][2]++;
         numCreated++;
     }
@@ -184,7 +189,8 @@ else if(checkForWiner(board)==-1){
     }
     if(playerNum==2){
         if(whichProfile(profileNames, numCreated, name2)==-1){
-            profileNames[numCreated]=name2;
+            strncpy( profileNames[numCreated], name2, 10);
+            //profileNames[numCreated]=name2;
             profileData[numCreated][2]++;
             numCreated++;
         }
@@ -196,6 +202,7 @@ else if(checkForWiner(board)==-1){
 
 printf("Play Again? y/n\n");
 scanf("%s", again);
+printf("%s\n", again);
 do{
 if(strcmp(again,"y")){
 printf("Run again");

@@ -57,22 +57,104 @@ int totalGames(char profileNames[maxProfiles][10], int profileData[10][3], int n
     return profileData[x][0]+profileData[x][1]+profileData[x][2];
 }
 
+typedef struct Node{
+/*Node West;
+Node East;
+Node North;
+Node South;
+Node SouthWest;
+Node SouthEast;
+Node NorthWest;
+Node NorthEast;
+*/
+Node next;
+Next prev;
+int state;
+}node;
+
+struct graph{
+int size;
+node *head;
+node *tail;
+};
+
+GRAPH *newGraph() {
+graph *items=malloc(sizeof(graph));
+items->head = NULL;
+items->tail = NULL;
+items->size = 0;
+return items;
+}
+
+void insertGraph(graph *items, int colNum, int value) {
+    assert (colNum>=0);
+    assert (colNum<=items->size);
+    node *point = malloc(sizeof(node));
+    point->data=value;
+    if(colNum==0) {
+        point->next=items->head;
+        items->head=point;
+        point->prev=NULL;
+        if(items->size == 0) {
+            items->tail= point;
+        }
+        else{
+            point->next->prev=point;
+        }
+    }
+    else if(index == items->size) {
+        point->prev=items->tail;
+        point->next= point->prev->next;
+        point->prev->next=point;
+        items->tail=point;
+    }
+    else{
+        if(index*2<=items->size){
+            int i=0;
+            node *previous;
+            previous=itmes->head;
+            for(i=0; i<index-1; i++){
+                previous=previous->next;
+            }
+            point->next=previous->next;
+            point->prev=previous;
+            point->next=->prev=point;
+            previous->next=point;
+        }
+        else{
+            int i=items->size-1;
+            node *nxt;
+            nxt=items->tail;
+            for(i=items->size-1; i>index; i--){
+                nxt=nxt->prev;
+            }
+            point->next=nxt;
+            point->prev=nxt->prev;
+            point->prev->next=point;
+            nx->prev=point;
+        }
+    }
+    items->size++;
+}
+
 int AIMove(char board[dim][dim]){
-return 0;
+return 0;//"best move" is emptiest column and use depth first search (from wikipedia)
+//array of each column as unique identifiers for which nodes have been looked through
 }
 
 int main(void){
-dim=1;
-char again[1];
-char profileNames[maxProfiles][10];
-int profileData[maxProfiles][3];
-int col=1, playerNum=0, numCreated=0, p1W=0, p2W=0, gameNum=0;
-char name1[10], name2[10]="Computer", type[10];
-for(int i=0; i<maxProfiles; i++){
-for(int j=0; j<3; j++){
-profileData[i][j]=0;
-}
-}
+    dim=1;
+    newGraph AIPick;
+    char again[1];
+    char profileNames[maxProfiles][10];
+    int profileData[maxProfiles][3];
+    int col=1, playerNum=0, numCreated=0, p1W=0, p2W=0, gameNum=0;
+    char name1[10], name2[10]="Computer", type[10];
+    for(int i=0; i<maxProfiles; i++){
+        for(int j=0; j<3; j++){
+            profileData[i][j]=0;
+        }
+    }
 //name2="Computer";
 char userID='R';
 do{
@@ -80,6 +162,9 @@ printf("Enter the size of the board:  \n *Board size must be greater than 3* \n 
 scanf("%d", &dim);
 if (dim < 4){
 	return 0;
+}
+for(int rt=0' rt<dim-1; rt++){
+    insertGraph(AIPick, rt, 0);
 }
 char board[dim][dim];
 for(int i=0; i<dim; i++){
@@ -200,19 +285,21 @@ else if(checkForWiner(board)==-1){
     }
 }
 
+//printf("Play Again? y/n\n");
+//scanf("%s", again);
+//printf("%s\n", again);
+do{
+//if(strcmp(again,"y")==0){
+//printf("Run again");
+//gameNum++;
 printf("Play Again? y/n\n");
 scanf("%s", again);
-printf("%s\n", again);
-do{
-if(strcmp(again,"y")){
-printf("Run again");
-gameNum++;
 }
-else if(strcmp(again,"n")) return 0;
-}
+//else if(strcmp(again,"n")) return 0;
+//}
 while(strcmp(again, "y")!=0 && strcmp(again,"n")!=0);
 }
-while(strcmp(again,"y")!=0);
+while(strcmp(again,"n")!=0);
 return 0;
 }
 

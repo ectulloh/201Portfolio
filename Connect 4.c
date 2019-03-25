@@ -269,7 +269,9 @@ int main(void){
     else{
     profileData[whichProfile(profileNames, numCreated, name1)][1]++;
     }
+    if(playerNum==2){
     printf("%s's record is %d out of %d!\n", name2, profileData[whichProfile(profileNames, numCreated, name2)][0], totalGames(profileNames, profileData, numCreated, name2));
+    }
     }
     else if(checkForWiner(board)==-1){
         printf("No one wins!\n");
@@ -309,6 +311,8 @@ int main(void){
     //}
     while(strcmp(again, "y")!=0 && strcmp(again,"n")!=0);
     }
-    while(strcmp(again,"n")!=0);    return 0;
+    while(strcmp(again,"n")!=0);
+    printf("Goodbye!\n");
+        return 0;
 }
 

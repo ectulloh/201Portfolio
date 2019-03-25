@@ -196,7 +196,7 @@ int main(void){
     	}
     }
     while (strcmp(type, "Computer")!=0 && strcmp(type, "Player")!=0);
-    //printf("Invalid input: try again.\n"));
+    printf("**Column count starts at 0**\n");
     int up;
     PrintBoard(board);
     char currentPlayer='R';
@@ -213,9 +213,11 @@ int main(void){
         printf("%s\n", name2);
     }
     do{
-
-        printf("Make a move by entering the column number you would like to drop a tile in.\n");
-        scanf("%d", &col);
+        do{
+            printf("Make a move by entering the column number you would like to drop a tile in.\n");
+            scanf("%d", &col);
+            }
+        while((col<0) || (col>= dim));
         up=((col>=0)&&(col<dim))?ColHeight(board, col):dim;
     }
     while (up==dim);

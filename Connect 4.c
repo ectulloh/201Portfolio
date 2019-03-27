@@ -48,7 +48,7 @@ int checkForWiner(char board[dim][dim]){            //This one sees if anyone ha
 
 int whichProfile(char profileNames[maxProfiles][10], int numCreated, char name[10]){    //This function returns which slot in the list of profiles a given username is, or returns that the name is not in the list.
     for(int i=0; i<numCreated; i++){
-        if(strcmp(profileNames[i], name)==0) return i;
+        if(strncmp(profileNames[i], name, 10)==0) return i;
     }
     return -1;
 }
@@ -170,9 +170,10 @@ int main(void){
     do{
     char name2[10]="Computer";
     printf("Enter the size of the board:  \n *Board size must be greater than 3* \n *Board sizes over 40 may cause display issues*\n");
-    scanf("%d", &dim);
+            scanf("%d", &dim);
     if (dim < 4){
-        return 0;
+            printf("Invalid Size\n Goodbye!\n")
+            return 0;
     }
     char board[dim][dim];
     for(int i=0; i<dim; i++){
@@ -186,16 +187,16 @@ int main(void){
     	printf("Are you playing against the Computer or another Player?\n");
     	scanf("%s", type);
     	printf("%s\n", type);
-    	if(strcmp(type, "Computer")==0){
+    	if(strncmp(type, "Computer", 10)==0){
     		playerNum=1;
     	}
-    	else if(strcmp(type, "Player")==0){
+    	else if(strncmp(type, "Player", 10)==0){
     		playerNum=2;
     		printf("Enter player 2 name:\n");               //Player 2 ID is also recorded for statistics
     		scanf("%s", name2);
     	}
     }
-    while (strcmp(type, "Computer")!=0 && strcmp(type, "Player")!=0);
+    while (strncmp(type, "Computer", 10)!=0 && strncmp(type, "Player", 10)!=0);
     printf("**Column count starts at 0**\n");
     int up;
     PrintBoard(board);
@@ -303,18 +304,20 @@ int main(void){
     //scanf("%s", again);
     //printf("%s\n", again);
     do{
-    //if(strcmp(again,"y")==0){
+    //if(strncmp(again,"y", 10)==0){
     //printf("Run again");
     //gameNum++;
     printf("Play Again? y/n\n");
     scanf("%s", again);
     }
-    //else if(strcmp(again,"n")) return 0;
+    //else if(strncmp(again,"n", 10)) return 0;
     //}
-    while(strcmp(again, "y")!=0 && strcmp(again,"n")!=0);
+    while(strncmp(again, "y", 1)!=0 && strncmp(again,"n", 1)!=0);
     }
-    while(strcmp(again,"n")!=0);
+    while(strncmp(again,"n", 1)!=0);
     printf("Goodbye!\n");
         return 0;
 }
+
+
 

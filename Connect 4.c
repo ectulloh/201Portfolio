@@ -172,7 +172,7 @@ int main(void){
     printf("Enter the size of the board:  \n *Board size must be greater than 3* \n *Board sizes over 40 may cause display issues*\n");
             scanf("%d", &dim);
     if (dim < 4){
-            printf("Invalid Size\n Goodbye!\n")
+            printf("Invalid Size\n Goodbye!\n");
             return 0;
     }
     char board[dim][dim];

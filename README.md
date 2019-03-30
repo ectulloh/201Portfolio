@@ -16,5 +16,7 @@ Finally, you are playing the game itself.
 Congratulations, player one goes first! 
 The columns start at 0 and go to 1 less than the dimension you inputted. 
 The game will progress as normal until someone either wins, by connecting 4, or when the board fills up. 
+For 2 player, you will take turns and the ID will be printed on top of the board.
+For User vs. AI, the AI will automatically take its turn. It is a simple AI, that chooses the least full column to play in. 
 The program will record the winner, if any, and ask if you would like to play again. 
 If you say no, by typing ‘n’, then have a great day! otherwise, by typing y, it will send you back to the start and prompt you for a board size and username once more.
